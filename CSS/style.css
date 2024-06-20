@@ -1,0 +1,694 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+html {
+    scroll-behavior: smooth;
+}
+
+:root
+{
+    --primary-color: #4379dd;
+    --secondary-color: #f7f7f7;
+    --tertiary-color: #bdbdbd;
+    --text-color: #000000;
+    --background-color: #f7f7f7;    
+    --wave-color: #0099ff;
+    --hover-color: #006eff;
+}
+
+/* =================Misc========================== */
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.separator {
+    height: 40px;
+    background-color: var(--wave-color);
+    z-index: 0;
+}
+
+
+
+#wave {
+    fill: var(--wave-color);
+    fill-opacity: 0.3;
+    width: 100%;
+}
+
+.button {
+    position: relative;
+    color: #333;
+    font-weight: 500;
+    padding: 6px 0;
+    text-decoration: none;
+    background: var(--background-color);
+    padding: 10px 5px;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: all 0.4s ease;
+}
+
+.button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--hover-color);
+    border-radius: 7px;
+    transition: all 0.4s ease;
+}
+
+.button:hover:before {
+    margin-left: 10%;
+    width: 80%;
+}
+
+.button.center:before {
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+
+/* =================Header========================== */
+
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--tertiary-color);
+    z-index: 2;
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto; 
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    gap: 100px;
+    margin-right: 200px;
+}
+
+nav li {
+    list-style: none;
+    background-color: var(--secondary-color);
+    border-radius: 7px;
+    padding: 10px;
+}
+nav ul li {
+    margin-left: 20px; /* Adjust this value to your preference */
+}
+
+nav img {
+    height: 100px;
+    margin-right: auto; 
+    margin-left: 200px;
+
+}
+.nav-links{
+    background: var(--background-color);
+    padding: 20px 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
+  .nav-links li{
+    list-style: none;
+    margin: 0 12px;
+  }
+  .nav-links li a{
+    position: relative;
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 6px 0;
+    text-decoration: none;
+  }
+  .nav-links li a:before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--hover-color);
+    border-radius: 12px;
+    transition: all 0.4s ease;
+  }
+  .nav-links li a:hover:before{
+    width: 100%;
+  }
+  .nav-links li.center a:before{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #menuToggle {
+    display: none; /* Initially hidden */
+    position: relative;
+    z-index: 1;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  #menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    transition: color 0.3s ease;
+  }
+  
+  #menuToggle a:hover {
+    color: tomato;
+  }
+  
+  #menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    cursor: pointer;
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+    -webkit-touch-callout: none;
+  }
+  
+  #menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #cdcdcd;
+    border-radius: 3px;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
+  }
+  
+  #menuToggle span:first-child {
+    transform-origin: 0% 0%;
+  }
+  
+  #menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+  }
+  
+  #menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+  }
+  
+  #menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+  }
+  
+  #menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+  }
+  
+#menu {
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -350px;
+  padding: 50px;
+  padding-top: 125px;
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(100%, -100%);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+  display: flex; /* Add this to make the menu items appear in a column */
+  flex-direction: column; /* Add this to make the menu items appear in a column */
+}
+  
+  #menu li {
+    padding: 10px 0;
+    font-size: 22px;
+  }
+
+  #menu nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #menuToggle input:checked ~ ul {
+    transform: none;
+  }
+  
+  /* Media Query for Responsive Menu */
+  @media (max-width: 1200px) {
+    .nav-links {
+      display: none; /* Hide default menu */
+    }
+
+    nav ul {
+        gap: 30px; /* Adjust this to the desired gap */
+      }
+  
+    #menuToggle {
+      display: block; /* Show hamburger menu */
+    }
+  }
+
+
+
+/* =================Main========================== */
+/* --------Intro------------ */
+#Main {
+    position: relative; 
+    padding: 20px;
+    text-align: center;
+    margin-top: 15vh;
+    background-color: var(--background-color);
+    font-size: 30px;
+    color: var(--text-color);
+
+}
+#Main svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+
+#Main .box-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    z-index: 1;
+}
+
+#Main .container-picture {
+    margin: auto; 
+    z-index: 1;
+}
+
+#Main .container-picture img {
+    display: block;
+    max-width: 100%;
+    max-height: 500px; 
+    height: auto;
+}
+
+#Main .container-content {
+    max-width: 600px; 
+    margin: auto; 
+    z-index: 1;
+
+}
+
+#Main .container-content p {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left; 
+    margin: 0; 
+    z-index: 1;
+}
+@media (max-width: 1000px) {
+    #Main .box-grid {
+        flex-direction: column;
+    }
+
+    #Main .container-picture img {
+        max-height: 300px;
+    }
+
+    #Main .container-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+/* --------Catalogue------------ */
+#Catalogue-section {
+    position: relative; 
+    padding: 20px;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+#Catalogue-section svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+#Catalogue-section .box-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#Catalogue-section .container-picture {
+    margin: auto; 
+    z-index: 1;
+}
+
+#Catalogue-section .container-picture img {
+    display: block;
+    max-width: 100%;
+    max-height: 200px; 
+    height: auto;
+}
+
+#Catalogue-section .container-content {
+    max-width: 600px; 
+    margin: auto; 
+    z-index: 1;
+}
+
+#Catalogue-section .container-content p {
+    color: var(--text-color);
+    line-height: 1.5;
+    text-align: left; 
+    margin: 0; 
+}
+
+#Catalogue-section h1, li  {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    text-decoration: none;
+    list-style-type: none;
+}
+@media (max-width: 1000px) {
+    #Catalogue-section .box-grid {
+        flex-direction: column;
+    }
+
+    #Catalogue-section .container-picture img {
+        max-height: 300px;
+    }
+
+    #Catalogue-section .container-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
+
+
+/* --------About us------------ */
+#About {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-color);
+}
+#About svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+#About .box-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#About .container-picture {
+    margin: auto; 
+    z-index: 1;
+
+}
+
+#About .container-picture img {
+    display: block;
+    max-width: 100%;
+    max-height: 200px; 
+    height: auto;
+}
+
+#About .container-content {
+    max-width: 600px; 
+    margin: auto; 
+    z-index: 1;
+}
+
+#About .container-content p {
+    color: var(--text-color);
+    line-height: 1.5;
+    text-align: left; 
+    margin: 0; 
+}
+
+/* --------Contact------------ */
+
+#Contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; 
+}
+
+#Contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; 
+}
+
+#Contact form input[type="text"],
+#Contact form input[type="email"],
+#Contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#Contact form button {
+    padding: 10px 20px;
+    background-color: var(--primary-color); 
+    color: white; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#Contact form button:hover {
+    background-color: var(--primary-color); 
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+form {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.contact-details {
+    flex: 1;
+}
+
+
+/* =================footer========================== */
+footer {
+    background-color: var(--tertiary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    color: var(--text-color);
+}
+
+
+/*#################################################### CATALOGUE PAGE ####################################################*/
+
+#Catalogue {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#Catalogue ul {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0px;
+}
+
+#Catalogue ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#Catalogue ul li img {
+    width: 400px;
+    height: auto;
+}
+
+#Catalogue .box-grid {
+    display: flex;
+    gap: 20px;
+}
+
+#Catalogue .container-picture {
+    flex: 1;
+}
+
+#Catalogue .container-picture .main-image {
+    width: 600px;
+    height: auto;
+    margin-top: 10vh;
+}
+
+#Catalogue .container-picture .small-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust the minimum width to 100px */
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 160px;
+    justify-content: center;
+}
+
+#Catalogue .container-picture .small-images img {
+    width: 100%; /* Set the width back to 100% */
+    height: auto;
+    cursor: pointer;
+}
+
+#Catalogue .container-content {
+    flex: 1;
+    text-align: left;   
+}
+
+/*#################################################### ACCESSOIRES PAGE ####################################################*/
+
+#Accessoires ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#Accessoires ul li {
+    flex: 0 0 calc(33.33% - 20px); /* 33.33% for 3 items per row, 20px for the gap between items */
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+#Accessoires ul li img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+/*#################################################### PRODUCT PAGE ####################################################*/
+
+
+#Product-Page {
+    position: relative;
+    padding: 20px;
+    margin-top: 10%;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#Product-Page ul {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0px;
+}
+
+#Product-Page ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#Product-Page ul li img {
+    width: 400px;
+    height: auto;
+}
+
+#Product-Page .box-grid {
+    display: flex;
+    gap: 20px;
+}
+
+#Product-Page .container-picture {
+    flex: 1;
+}
+
+#Product-Page .container-picture .main-image {
+    width: 600px;
+    height: auto;
+    margin-top: 10vh;
+}
+
+#Product-Page .container-picture .small-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 160px;
+    justify-content: center;
+}
+
+#Product-Page .container-picture .small-images img {
+    width: 100%; 
+    height: auto;
+    cursor: pointer;
+}
+
+#Product-Page .container-content {
+    flex: 1;
+    text-align: left;   
+}
